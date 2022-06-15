@@ -1,0 +1,43 @@
+body {
+    background-color: #EEF9BF;
+}
+
+h1 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 56px;
+    font-weight: 700;
+    color: #75B79E;
+}
+
+.master {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.titulo {
+    margin: 40px 0 47px 0;
+}
+
+.cardfront > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.cardfront > div > div {
+    display: flex;
+    background-color: #A7E9AF;
+    border-radius: 5px;
+    border: 1px solid #99CEA8;
+    width: 117px;
+    height: 146px;
+    align-items: center;
+    justify-content: center;
+}
+
+img {
+    max-width: 116px;
+    max-height: 145px;
+}
