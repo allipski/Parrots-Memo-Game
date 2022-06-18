@@ -8,15 +8,81 @@ while (resto != 0 || cartas < 1 || cartas > 14) {
 
 const loop = cartas / 2;
 
-let front = '<div><img src="images/front.png" /></div>';
-let fileiras = document.querySelectorAll(".cardfront > div");
+let fileira1 = document.querySelector(".cardfront :nth-child(1)");
+let fileira2 = document.querySelector(".cardfront :nth-child(2)");
+
+let imagens = [`<div><img src="images/bobrossparrot.gif" /></div>`, `<div><img src="images/explodyparrot.gif" /></div>`, `<div><img src="images/fiestaparrot.gif" /></div>`, `<div><img src="images/metalparrot.gif" /></div>`, `<div><img src="images/revertitparrot.gif" /></div>`, `<div><img src="images/tripletsparrot.gif" /></div>`, `<div><img src="images/unicornparrot.gif" /></div>`];
+
+let gameSet = [];
 
 for (let i = 0; i < loop; i++) {
-    fileiras[0].innerHTML += front;
-    fileiras[1].innerHTML += front;
+    gameSet.push(imagens[i]);
 }
 
-let fileira1 = [];
-let fileira2 = [];
+for (let i = 0; i < loop; i++) {
+    gameSet.push(imagens[i]);
+}
 
-let imagens = [`div><img src="images/bobrossparrot.gif" /></div>`, `div><img src="images/explodyparrot.gif" /></div>`, `div><img src="images/fiestaparrot.gif" /></div>`, `div><img src="images/metalparrot.gif" /></div>`, `div><img src="images/revertitparrot.gif" /></div>`, `div><img src="images/tripletsparrot.gif" /></div>`, `div><img src="images/unicornparrot.gif" /></div>`];
+function comparador() { 
+	return Math.random() - 0.5; 
+}
+
+let gameSetRandom = gameSet.sort(comparador);
+
+console.log(gameSetRandom);
+
+
+for (i = 0; i < loop; i++) {
+    fileira1.innerHTML += 
+    `<div class="flip-card">
+        <div class="flip-card-inner" onClick = "viracarta(this)" >
+            <div class="flip-card-front">
+                <img src="images/front.png" />
+            </div>
+            <div class="flip-card-back">
+                ${gameSetRandom[i]}
+            </div>
+        </div>
+    </div> `;
+    fileira2.innerHTML += 
+    `<div class="flip-card">
+        <div class="flip-card-inner" onClick = "viracarta(this)" >
+            <div class="flip-card-front">
+                <img src="images/front.png" />
+            </div>
+            <div class="flip-card-back">
+                ${gameSetRandom[i + loop]}
+            </div>
+        </div>
+    </div> `;
+}
+
+function viracarta(elemento) {
+    if (document.querySelectorAll(".transforma").length < 2) {
+        elemento.classList.add("transforma");
+        console.log(1);
+    }
+    setTimeout(verificarPonto, 2000);
+}
+
+function verificarPonto() {  
+    if (document.querySelectorAll(".transforma").length === 2) {
+        // let par1 = document.querySelector(".transforma:nth-of-type(1) .flip-card-back").innerHTML;
+        // let par2 = document.querySelector(".transforma:nth-of-type(2) .flip-card-back").innerHTML;
+        let pares = document.querySelectorAll(".transforma");
+        console.log(2);
+        if (pares[0].innerHTML === pares[1].innerHTML  ) {
+            pares[0].classList.remove("transforma");
+            pares[1].classList.remove("transforma");
+            pares[0].classList.add("ponto");
+            pares[1].classList.add("ponto");
+            console.log(3);
+        } else {
+            let remover1 = document.querySelector(".transforma");
+            remover1.classList.remove("transforma");
+            let remover2 = document.querySelector(".transforma");
+            remover2.classList.remove("transforma");
+            console.log(4);
+        }
+    }
+}
