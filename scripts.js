@@ -35,29 +35,32 @@ console.log(gameSetRandom);
 for (i = 0; i < loop; i++) {
     fileira1.innerHTML += 
     `<div class="flip-card">
-        <div class="flip-card-inner" onClick = "viracarta(this)" >
-            <div class="flip-card-front">
+        <div class="flip-card-inner" data-identifier="card" onClick = "viracarta(this)" >
+            <div class="flip-card-front" data-identifier="back-face">
                 <img src="images/front.png" />
             </div>
-            <div class="flip-card-back">
+            <div class="flip-card-back" data-identifier="front-face">
                 ${gameSetRandom[i]}
             </div>
         </div>
     </div> `;
     fileira2.innerHTML += 
     `<div class="flip-card">
-        <div class="flip-card-inner" onClick = "viracarta(this)" >
-            <div class="flip-card-front">
+        <div class="flip-card-inner" data-identifier="card" onClick = "viracarta(this)" >
+            <div class="flip-card-front" data-identifier="back-face">
                 <img src="images/front.png" />
             </div>
-            <div class="flip-card-back">
+            <div class="flip-card-back" data-identifier="front-face">
                 ${gameSetRandom[i + loop]}
             </div>
         </div>
     </div> `;
 }
 
+let contador = 0;
+
 function viracarta(elemento) {
+    contador++;
     if (document.querySelectorAll(".transforma").length < 2) {
         elemento.classList.add("transforma");
         console.log(1);
@@ -84,5 +87,12 @@ function verificarPonto() {
             remover2.classList.remove("transforma");
             console.log(4);
         }
+        vitoria();
     }
+}
+
+function vitoria() {
+    if (document.querySelectorAll(".ponto").length == cartas) {
+        alert (`Você ganhou em ${contador} jogadas!`);
+    }  
 }
