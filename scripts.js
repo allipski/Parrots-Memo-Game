@@ -58,7 +58,7 @@ let contador = 0;
 
 function viracarta(elemento) {
     if (document.querySelectorAll(".transforma").length < 2) {
-        document.querySelector("antispam").classList.add("aparece");
+        document.querySelector(".antispam").classList.add("aparece");
         setTimeout(fimAntispam, 2000);
         elemento.classList.add("transforma");
         contador++;
@@ -68,8 +68,6 @@ function viracarta(elemento) {
 
 function verificarPonto() {  
     if (document.querySelectorAll(".transforma").length === 2) {
-        // let par1 = document.querySelector(".transforma:nth-of-type(1) .flip-card-back").innerHTML;
-        // let par2 = document.querySelector(".transforma:nth-of-type(2) .flip-card-back").innerHTML;
         let pares = document.querySelectorAll(".transforma");
         if (pares[0].innerHTML === pares[1].innerHTML  ) {
             pares[0].classList.remove("transforma");
@@ -93,5 +91,5 @@ function vitoria() {
 }
 
 function fimAntispam() {
-    document.querySelector("antispam").classList.remove("aparece");
+    document.querySelector(".antispam").classList.remove("aparece");
 }

@@ -94,19 +94,19 @@ img {
     height: 116px;
 }
 
-.antispam {
+/* .antispam {
     display: none;
     position: fixed;
     height: 100%;
     width: 100%;
     background-color: transparent;
     z-index: 2;
-}
+} */
 
-.aparece {
+/* .aparece {
     display: flex;
     
-}
+} */
 
 @media only screen and (max-width: 614px) {
     
