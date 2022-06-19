@@ -29,9 +29,6 @@ function comparador() {
 
 let gameSetRandom = gameSet.sort(comparador);
 
-console.log(gameSetRandom);
-
-
 for (i = 0; i < loop; i++) {
     fileira1.innerHTML += 
     `<div class="flip-card">
@@ -60,10 +57,11 @@ for (i = 0; i < loop; i++) {
 let contador = 0;
 
 function viracarta(elemento) {
-    contador++;
     if (document.querySelectorAll(".transforma").length < 2) {
+        document.querySelector("antispam").classList.add("aparece");
+        setTimeout(fimAntispam, 2000);
         elemento.classList.add("transforma");
-        console.log(1);
+        contador++;
     }
     setTimeout(verificarPonto, 2000);
 }
@@ -73,19 +71,16 @@ function verificarPonto() {
         // let par1 = document.querySelector(".transforma:nth-of-type(1) .flip-card-back").innerHTML;
         // let par2 = document.querySelector(".transforma:nth-of-type(2) .flip-card-back").innerHTML;
         let pares = document.querySelectorAll(".transforma");
-        console.log(2);
         if (pares[0].innerHTML === pares[1].innerHTML  ) {
             pares[0].classList.remove("transforma");
             pares[1].classList.remove("transforma");
             pares[0].classList.add("ponto");
             pares[1].classList.add("ponto");
-            console.log(3);
         } else {
             let remover1 = document.querySelector(".transforma");
             remover1.classList.remove("transforma");
             let remover2 = document.querySelector(".transforma");
             remover2.classList.remove("transforma");
-            console.log(4);
         }
         vitoria();
     }
@@ -95,4 +90,8 @@ function vitoria() {
     if (document.querySelectorAll(".ponto").length == cartas) {
         alert (`Você ganhou em ${contador} jogadas!`);
     }  
+}
+
+function fimAntispam() {
+    document.querySelector("antispam").classList.remove("aparece");
 }
